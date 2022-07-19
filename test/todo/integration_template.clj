@@ -19,5 +19,5 @@
 
 (defn test-request [method url & body]
   (if body
-    (test/response-for (::http/service-fn @server) method url :body "{\"title\":\"Clojure\"}")
+    (test/response-for (::http/service-fn @server) method url :headers {"Content-Type" "application/json"} :body (-> body first str))
     (test/response-for (::http/service-fn @server) method url)))

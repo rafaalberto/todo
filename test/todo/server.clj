@@ -10,5 +10,5 @@
   (fact "Should get one task"
         (:body (integration/test-request :get "/task/1")) => "{\"title\":\"Clojure API 1\",\"description\":\"Getting Clojure\"}")
   (fact "Should create task"
-        (:body (integration/test-request :post "/task" "{\"title\":\"Clojure\"}")) =>
-        "{\"message\":\"Task created successfully\"}"))
+        (:body (integration/test-request :post "/task" "{\"title\":\"Clojure API 1\"}")) =>
+        "{\"title\":\"Clojure API 1\"}"))

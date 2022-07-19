@@ -6,5 +6,5 @@
 (defn get-one [id]
   {:title (str "Clojure API " id) :description "Getting Clojure"})
 
-(defn create []
-  {:message "Task created successfully"})
+(defn create [title]
+  {:title title})
