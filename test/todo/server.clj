@@ -1,14 +1,19 @@
 (ns todo.server
   (:require [midje.sweet :refer :all]
+            [matcher-combinators.matchers :as m]
+            [matcher-combinators.midje :refer [match]]
+            [clojure.data.json :as json]
             [todo.integration-template :as integration]))
 
 (against-background
   [(before :facts (integration/start-server))
    (after :facts (integration/stop-server))]
   (fact "Should get all tasks"
-        (:body (integration/test-request :get "/task")) => "[{\"title\":\"Create API\",\"description\":\"Create Clojure API\"}]")
+        (json/read-str (:body (integration/test-request :get "/task")) :key-fn keyword)
+        => (match [{:title "Create API" :description "Create Clojure API"}]))
   (fact "Should get one task"
-        (:body (integration/test-request :get "/task/1")) => "{\"title\":\"Clojure API 1\",\"description\":\"Getting Clojure\"}")
+        (json/read-str (:body (integration/test-request :get "/task/1")) :key-fn keyword)
+        => (match {:title "Clojure API 1" :description "Getting Clojure"}))
   (fact "Should create task"
-        (:body (integration/test-request :post "/task" "{\"title\":\"Clojure API 1\"}")) =>
-        "{\"title\":\"Clojure API 1\"}"))
+        (json/read-str (:body (integration/test-request :post "/task" "{\"title\":\"Clojure API 1\"}")) :key-fn keyword)
+        => (match {:title "Clojure API 1"})))

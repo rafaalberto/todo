@@ -7,4 +7,5 @@
   {:title (str "Clojure API " id) :description "Getting Clojure"})
 
 (defn create [title]
-  {:title title})
+  {:id    (random-uuid)
+   :title title})
