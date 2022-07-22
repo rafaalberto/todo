@@ -6,6 +6,7 @@
 (defn get-one [id]
   {:title (str "Clojure API " id) :description "Getting Clojure"})
 
-(defn create [title]
-  {:id    (random-uuid)
-   :title title})
+(defn create [title description]
+  {:id          (random-uuid)
+   :title       title
+   :description description})

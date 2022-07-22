@@ -15,5 +15,6 @@
         (json/read-str (:body (integration/test-request :get "/task/1")) :key-fn keyword)
         => (match {:title "Clojure API 1" :description "Getting Clojure"}))
   (fact "Should create task"
-        (json/read-str (:body (integration/test-request :post "/task" "{\"title\":\"Clojure API 1\"}")) :key-fn keyword)
-        => (match {:title "Clojure API 1"})))
+        (json/read-str (:body (integration/test-request :post "/task"
+                                                        "{\"title\":\"Clojure API 1\",\"description\":\"API 1\" }")) :key-fn keyword)
+        => (match {:title "Clojure API 1" :description "API 1"})))
