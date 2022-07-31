@@ -1,34 +1,26 @@
 (ns todo.controller.task
   (:require [todo.logic.task :as l.task]
             [todo.database.task :as d.task]
-            [clojure.data.json :as json])
-  (:import (java.util UUID)))
-
-(defn- uuid->string [key value]
-  (if (= key :id)
-    (str value)
-    value))
-
-(defn- string->uuid [value]
-  (UUID/fromString value))
+            [todo.utils :as utils]
+            [clojure.data.json :as json]))
 
 (defn get-all [_]
   {:status  200
    :headers {"Content-Type" "application/json"}
    :body    (json/write-str (d.task/find-all)
-                            :value-fn uuid->string)})
+                            :value-fn utils/uuid->string)})
 
 (defn get-one [{:keys [path-params]}]
   {:status  200
    :headers {"Content-Type" "application/json"}
-   :body    (json/write-str (d.task/find-one (string->uuid (:id path-params)))
-                            :value-fn uuid->string)})
-
-(defn- create-task [title description]
-  (d.task/insert (l.task/create title description)))
+   :body    (json/write-str (-> (:id path-params)
+                                (utils/string->uuid)
+                                (d.task/find-one))
+                            :value-fn utils/uuid->string)})
 
 (defn create [{{:keys [title description]} :json-params}]
   {:status  201
    :headers {"Content-Type" "application/json"}
-   :body    (json/write-str (create-task title description)
-                            :value-fn uuid->string)})
+   :body    (json/write-str (-> (l.task/create title description)
+                                (d.task/insert))
+                            :value-fn utils/uuid->string)})

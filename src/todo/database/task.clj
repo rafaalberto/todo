@@ -1,5 +1,4 @@
-(ns todo.database.task
-  (:import (java.util UUID)))
+(ns todo.database.task)
 
 (def tasks (atom []))
 
