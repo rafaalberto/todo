@@ -10,4 +10,5 @@
   (route/expand-routes
     #{["/task"     :get c.task/get-all :route-name :get-all-tasks]
       ["/task/:id" :get c.task/get-one :route-name :get-one-task]
-      ["/task"     :post (conj common-interceptors `c.task/create) :route-name :create-task]}))
+      ["/task"     :post (conj common-interceptors `c.task/create) :route-name :create-task]
+      ["/task/:id" :delete c.task/delete :route-name :delete-task]}))
