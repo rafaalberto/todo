@@ -1,6 +1,5 @@
 (ns todo.server
   (:require [midje.sweet :refer :all]
-            [matcher-combinators.matchers :as m]
             [matcher-combinators.midje :refer [match]]
             [clojure.data.json :as json]
             [todo.integration-template :as integration]))

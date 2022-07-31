@@ -56,6 +56,7 @@
     <orderEntry type="library" name="Leiningen: mvxcvi/arrangement:1.2.0" level="project" />
     <orderEntry type="library" name="Leiningen: mvxcvi/puget:1.1.2" level="project" />
     <orderEntry type="library" name="Leiningen: nrepl:0.6.0" level="project" />
+    <orderEntry type="library" name="Leiningen: nubank/matcher-combinators:3.5.0" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojars.brenton/google-diff-match-patch:0.1" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/clojure:1.11.1" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/core.async:1.5.648" level="project" />
