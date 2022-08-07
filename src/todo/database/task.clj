@@ -14,3 +14,6 @@
 (defn delete! [id]
   (let [updated-tasks (remove #(= % (find-one id)) @tasks)]
     (reset! tasks updated-tasks)))
+
+(defn clear! []
+  (reset! tasks []))

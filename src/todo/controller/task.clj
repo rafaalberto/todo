@@ -22,7 +22,8 @@
   {:status  201
    :headers {"Content-Type" "application/json"}
    :body    (json/write-str (-> (l.task/create title description)
-                                (d.task/insert!))
+                                (d.task/insert!)
+                                first)
                             :value-fn utils/uuid->string)})
 
 (defn delete [{:keys [path-params]}]
