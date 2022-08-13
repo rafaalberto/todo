@@ -6,7 +6,8 @@
   @tasks)
 
 (defn find-one [id]
-  (some #(if (= (:id %) id) %) @tasks))
+  (let [search (some #(if (= (:id %) id) %) @tasks)]
+    (if (nil? search) {} search)))
 
 (defn insert! [task]
   (swap! tasks conj task))
