@@ -29,11 +29,10 @@
           (fact "Should delete a task"
                 (delete-task! (:id task-created)) => nil)
 
-          (fact "Should get any task after deleted"
+          (fact "Should returns no task after deleted"
                           (let [task-id (:id task-created)]
-                            (find-one task-id) => (match [])))
-
-          (fact "Should returns empty when there is no task"
-                (let [task-id (random-uuid)]
-                  (json/read-str (:body (integration/test-request :get (str "/task/" task-id))) :key-fn keyword)
-                  => (match []))))))
+                            (find-one task-id) => (match [])))))
+  (fact "Should returns empty when there is no task"
+        (let [task-id (random-uuid)]
+          (json/read-str (:body (integration/test-request :get (str "/task/" task-id))) :key-fn keyword)
+          => (match []))))
