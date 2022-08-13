@@ -31,5 +31,6 @@
    :headers {"Content-Type" "application/json"}
    :body    (json/write-str (-> (:id path-params)
                                 (utils/string->uuid)
-                                (d.task/delete!))
+                                (d.task/delete!)
+                                {})
                             :value-fn utils/uuid->string)})
