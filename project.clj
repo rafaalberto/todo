@@ -10,6 +10,7 @@
                  [org.slf4j/slf4j-simple "1.7.36"]
                  [org.clojure/data.json "0.2.6"]
                  [midje "1.10.5"]
-                 [nubank/matcher-combinators "3.5.0"]]
+                 [nubank/matcher-combinators "3.5.0"]
+                 [com.stuartsierra/component "1.1.0"]]
   :plugins [[lein-midje "3.2.2"]]
   :repl-options {:init-ns todo.core})
